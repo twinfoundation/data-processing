@@ -3,9 +3,10 @@
 ## Interfaces
 
 - [IDataConverterConnector](interfaces/IDataConverterConnector.md)
+- [IDataExtractionComponent](interfaces/IDataExtractionComponent.md)
 - [IDataExtractorConnector](interfaces/IDataExtractorConnector.md)
-- [IExtractRule](interfaces/IExtractRule.md)
-- [IStructuredData](interfaces/IStructuredData.md)
+- [IRule](interfaces/IRule.md)
+- [IRuleGroup](interfaces/IRuleGroup.md)
 
 ## Variables
 

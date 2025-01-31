@@ -1,0 +1,10 @@
+{
+	"error": {
+		"dataExtractionService": {
+			"noExtractorFound": "No extractors could be found in the factory",
+			"ruleGroupNotFound": "The rule group with id \"{id}\" could not be found",
+			"mimeTypeNotFound": "Unable to detect MIME type from data",
+			"converterNotFound": "Unable to find a converter for the MIME type \"{mimeType}\""
+		}
+	}
+}

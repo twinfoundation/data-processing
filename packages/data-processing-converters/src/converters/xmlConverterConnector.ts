@@ -1,25 +1,26 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { BaseError, Converter, GeneralError, Guards } from "@twin.org/core";
+import { BaseError, GeneralError, Guards } from "@twin.org/core";
 import type { IDataConverterConnector } from "@twin.org/data-processing-models";
 import { nameof } from "@twin.org/nameof";
 import { MimeTypes } from "@twin.org/web";
+import xml2js from "xml2js";
 
 /**
- * Class for converting data to JSON from bytes.
+ * Class for converting data to XML from bytes.
  */
-export class JsonConverterConnector implements IDataConverterConnector {
+export class XmlConverterConnector implements IDataConverterConnector {
 	/**
 	 * Runtime name for the class.
 	 */
-	public readonly CLASS_NAME: string = nameof<JsonConverterConnector>();
+	public readonly CLASS_NAME: string = nameof<XmlConverterConnector>();
 
 	/**
 	 * The MIME types that the converter can convert.
 	 * @returns The MIME types.
 	 */
 	public mimeTypes(): string[] {
-		return [MimeTypes.Json, MimeTypes.JsonLd];
+		return [MimeTypes.Xml];
 	}
 
 	/**
@@ -34,11 +35,17 @@ export class JsonConverterConnector implements IDataConverterConnector {
 
 		if (data.length > 0) {
 			try {
-				const jsonString = Converter.bytesToUtf8(data);
-				converted = JSON.parse(jsonString);
+				const xmlParser = new xml2js.Parser({
+					explicitArray: false,
+					explicitRoot: true
+				});
+
+				const result = await xmlParser.parseStringPromise(Buffer.from(data));
+
+				converted = result ?? {};
 			} catch (error) {
 				throw new GeneralError(this.CLASS_NAME, "invalidFormat", {
-					failure: BaseError.fromError(error).message
+					failure: BaseError.fromError(error).message.split("\n").join(" ")
 				});
 			}
 		}

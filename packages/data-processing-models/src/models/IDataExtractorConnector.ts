@@ -1,7 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IExtractRule } from "./IExtractRule";
-import type { IStructuredData } from "./IStructuredData";
+import type { IRule } from "./IRule";
 
 /**
  * Interface describing a connector for extracting data.
@@ -9,9 +8,9 @@ import type { IStructuredData } from "./IStructuredData";
 export interface IDataExtractorConnector {
 	/**
 	 * Extracts data from the from the provided input.
-	 * @param structuredData The object to extract from.
-	 * @param extractRules The rules to use to extract the data.
+	 * @param data The object to extract from.
+	 * @param rules The rules to use to extract the data.
 	 * @returns The extracted data.
 	 */
-	extract(structuredData: IStructuredData, extractRules: IExtractRule[]): Promise<IStructuredData>;
+	extract(data: unknown, rules: IRule[]): Promise<unknown>;
 }

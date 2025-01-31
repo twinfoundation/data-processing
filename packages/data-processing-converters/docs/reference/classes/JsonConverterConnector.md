@@ -46,7 +46,7 @@ The MIME types.
 
 ### convert()
 
-> **convert**(`data`): `Promise`\<`IStructuredData`\>
+> **convert**(`data`): `Promise`\<`unknown`\>
 
 Converts the data to a structured object.
 
@@ -60,7 +60,7 @@ The data to extract from.
 
 #### Returns
 
-`Promise`\<`IStructuredData`\>
+`Promise`\<`unknown`\>
 
 The extracted data.
 

@@ -28,27 +28,27 @@ Runtime name for the class.
 
 ### extract()
 
-> **extract**(`structuredData`, `extractRules`): `Promise`\<`IStructuredData`\>
+> **extract**(`data`, `rules`): `Promise`\<`unknown`\>
 
 Extracts data from the from the provided input.
 
 #### Parameters
 
-##### structuredData
+##### data
 
-`IStructuredData`
+`unknown`
 
 The object to extract from.
 
-##### extractRules
+##### rules
 
-`IExtractRule`[]
+`IRule`[]
 
 The rules to use to extract the data.
 
 #### Returns
 
-`Promise`\<`IStructuredData`\>
+`Promise`\<`unknown`\>
 
 The extracted data.
 

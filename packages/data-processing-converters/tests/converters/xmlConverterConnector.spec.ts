@@ -2,31 +2,31 @@
 // SPDX-License-Identifier: Apache-2.0.
 import { readFile } from "node:fs/promises";
 import { Converter } from "@twin.org/core";
-import { JsonConverterConnector } from "../../src/converters/jsonConverterConnector";
+import { XmlConverterConnector } from "../../src/converters/xmlConverterConnector";
 
-describe("JsonConverterConnector", () => {
-	test("Can fail when input is invalid JSON", async () => {
-		const converter = new JsonConverterConnector();
+describe("XmlConverterConnector", () => {
+	test("Can fail when input is invalid xml", async () => {
+		const converter = new XmlConverterConnector();
 		await expect(converter.convert(Converter.utf8ToBytes("!"))).rejects.toMatchObject({
 			name: "GeneralError",
-			message: "jsonConverterConnector.invalidFormat",
-			properties: { failure: "Unexpected token '!', \"!\" is not valid JSON" }
+			message: "xmlConverterConnector.invalidFormat",
+			properties: { failure: "Non-whitespace before first tag. Line: 0 Column: 1 Char: !" }
 		});
 	});
 
 	test("Can output empty object when the input is empty", async () => {
-		const converter = new JsonConverterConnector();
+		const converter = new XmlConverterConnector();
 
 		const output = await converter.convert(new Uint8Array());
 
 		expect(output).toEqual({});
 	});
 
-	test("Can output object when the input is JSON", async () => {
-		const converter = new JsonConverterConnector();
+	test("Can output object when the input is XML", async () => {
+		const converter = new XmlConverterConnector();
 
-		const json = await readFile("./tests/converters/samples/test.json");
-		const output = await converter.convert(json);
+		const xml = await readFile("./tests/converters/samples/test.xml");
+		const output = await converter.convert(xml);
 
 		expect(output).toEqual({
 			menu: {

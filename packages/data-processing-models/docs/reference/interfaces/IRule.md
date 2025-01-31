@@ -1,6 +1,6 @@
-# Interface: IExtractRule
+# Interface: IRule
 
-Definition for the data to extract.
+Rule defining how to extract data from an object.
 
 ## Properties
 
@@ -28,11 +28,11 @@ Supports simple dotted path notation, and numeric index notation.
 
 ***
 
-### maintainNestingDepth?
+### retainPathDepth?
 
-> `optional` **maintainNestingDepth**: `number`
+> `optional` **retainPathDepth**: `number`
 
-When extracting objects, should the path be maintained in the target object.
+When extracting objects, how much of the original path should be maintained in the target object.
 
 ***
 

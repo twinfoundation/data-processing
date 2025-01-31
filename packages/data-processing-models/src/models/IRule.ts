@@ -3,9 +3,9 @@
 import type { CoerceType } from "@twin.org/core";
 
 /**
- * Definition for the data to extract.
+ * Rule defining how to extract data from an object.
  */
-export interface IExtractRule {
+export interface IRule {
 	/**
 	 * The path to the data in the document to extract.
 	 * should be in JSONPath format https://www.rfc-editor.org/rfc/rfc9535.html.
@@ -20,9 +20,9 @@ export interface IExtractRule {
 	target: string;
 
 	/**
-	 * When extracting objects, should the path be maintained in the target object.
+	 * When extracting objects, how much of the original path should be maintained in the target object.
 	 */
-	maintainNestingDepth?: number;
+	retainPathDepth?: number;
 
 	/**
 	 * Should the data be coerced to a specific type.

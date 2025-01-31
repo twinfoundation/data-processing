@@ -1,1 +1,10 @@
-{}
+{
+	"error": {
+		"jsonConverterConnector": {
+			"invalidFormat": "The provided data is not valid JSON, \"{failure}\""
+		},
+		"xmlConverterConnector": {
+			"invalidFormat": "The provided data is not valid XML, \"{failure}\""
+		}
+	}
+}
