@@ -1,11 +1,11 @@
 {
-	"name": "@twin.org/data-processing-models",
+	"name": "@twin.org/data-processing-extractors",
 	"version": "v0.0.1-next.1",
-	"description": "Models which define the structure of data processing packages",
+	"description": "Data extractor connector implementations",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/twinfoundation/data-processing.git",
-		"directory": "packages/data-processing-models"
+		"directory": "packages/data-processing-extractors"
 	},
 	"author": "martyn.janes@iota.org",
 	"license": "Apache-2.0",
@@ -30,7 +30,11 @@
 		"prepare": "ts-patch install -s"
 	},
 	"dependencies": {
-		"@twin.org/core": "next"
+		"@twin.org/core": "next",
+		"@twin.org/data-processing-models": "0.0.1-next.1",
+		"@twin.org/nameof": "next",
+		"@twin.org/web": "next",
+		"json-p3": "2.1.1"
 	},
 	"devDependencies": {
 		"@twin.org/nameof-transformer": "next",

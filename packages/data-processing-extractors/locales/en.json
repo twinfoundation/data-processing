@@ -1,0 +1,7 @@
+{
+	"error": {
+		"jsonPathExtractorConnector": {
+			"invalidRule": "The JSONPath rule \"{rule}\" failed with reason: \"{reason}\""
+		}
+	}
+}

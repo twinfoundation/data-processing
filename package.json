@@ -39,7 +39,9 @@
 		"prettier": "3.4.2"
 	},
 	"workspaces": [
-		"packages/data-processing-models"
+		"packages/data-processing-models",
+		"packages/data-processing-converters",
+		"packages/data-processing-extractors"
 	],
 	"type": "module"
 }
