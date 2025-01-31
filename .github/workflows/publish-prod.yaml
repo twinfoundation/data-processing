@@ -9,6 +9,8 @@ on:
         type: choice
         options:
           - 'packages/data-processing-models'
+          - 'packages/data-processing-conveters'
+          - 'packages/data-processing-extractors'
 
 jobs:
   publish:
