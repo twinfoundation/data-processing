@@ -122,7 +122,7 @@ export class DataProcessingClient extends BaseRestClient implements IDataProcess
 		Guards.uint8Array(this.CLASS_NAME, nameof(data), data);
 
 		const result = await this.fetch<IDataProcessingExtractRequest, IDataProcessingExtractResponse>(
-			"/rule-group/extract",
+			"/extract",
 			"POST",
 			{
 				body: {
@@ -146,7 +146,7 @@ export class DataProcessingClient extends BaseRestClient implements IDataProcess
 		Guards.uint8Array(this.CLASS_NAME, nameof(data), data);
 
 		const result = await this.fetch<IDataProcessingConvertRequest, IDataProcessingConvertResponse>(
-			"/rule-group/convert",
+			"/convert",
 			"POST",
 			{
 				body: {
