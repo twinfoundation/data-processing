@@ -1,6 +1,6 @@
-# Interface: IDataExtractionServiceConstructorOptions
+# Interface: IDataProcessingServiceConstructorOptions
 
-The options for the data extraction service constructor.
+The options for the data processing service constructor.
 
 ## Properties
 

@@ -1,6 +1,6 @@
 {
 	"error": {
-		"dataExtractionService": {
+		"dataProcessingService": {
 			"noExtractorFound": "No extractors could be found in the factory",
 			"ruleGroupNotFound": "The rule group with id \"{id}\" could not be found",
 			"mimeTypeNotFound": "Unable to detect MIME type from data",

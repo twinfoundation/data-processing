@@ -7,5 +7,7 @@ import type { IDataConverterConnector } from "../models/IDataConverterConnector"
  * Factory for creating data converter connectors.
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const DataConverterConnectorFactory =
-	Factory.createFactory<IDataConverterConnector>("data-converter");
+export const DataConverterConnectorFactory = Factory.createFactory<IDataConverterConnector>(
+	"data-converter",
+	true
+);

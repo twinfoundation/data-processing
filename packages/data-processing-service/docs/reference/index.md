@@ -2,13 +2,17 @@
 
 ## Classes
 
-- [DataExtractionService](classes/DataExtractionService.md)
+- [DataProcessingService](classes/DataProcessingService.md)
 - [ExtractionRule](classes/ExtractionRule.md)
 - [ExtractionRuleGroup](classes/ExtractionRuleGroup.md)
 
 ## Interfaces
 
-- [IDataExtractionServiceConstructorOptions](interfaces/IDataExtractionServiceConstructorOptions.md)
+- [IDataProcessingServiceConstructorOptions](interfaces/IDataProcessingServiceConstructorOptions.md)
+
+## Variables
+
+- [restEntryPoints](variables/restEntryPoints.md)
 
 ## Functions
 

@@ -2,13 +2,17 @@
 
 Interface describing a connector for extracting data.
 
+## Extends
+
+- `IComponent`
+
 ## Methods
 
 ### extract()
 
 > **extract**(`data`, `rules`): `Promise`\<`unknown`\>
 
-Extracts data from the from the provided input.
+Extracts data from the provided input.
 
 #### Parameters
 

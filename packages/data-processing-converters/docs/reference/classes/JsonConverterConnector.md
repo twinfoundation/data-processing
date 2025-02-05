@@ -24,6 +24,10 @@ Class for converting data to JSON from bytes.
 
 Runtime name for the class.
 
+#### Implementation of
+
+`IDataConverterConnector.CLASS_NAME`
+
 ## Methods
 
 ### mimeTypes()

@@ -42,7 +42,8 @@
 		"packages/data-processing-models",
 		"packages/data-processing-converters",
 		"packages/data-processing-extractors",
-		"packages/data-processing-service"
+		"packages/data-processing-service",
+		"packages/data-processing-rest-client"
 	],
 	"type": "module"
 }

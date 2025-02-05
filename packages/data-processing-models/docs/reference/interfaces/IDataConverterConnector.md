@@ -2,6 +2,10 @@
 
 Interface describing a connector for extracting data.
 
+## Extends
+
+- `IComponent`
+
 ## Methods
 
 ### mimeTypes()

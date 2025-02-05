@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0.
 
 /**
- * The options for the data extraction service constructor.
+ * The options for the data processing service constructor.
  */
-export interface IDataExtractionServiceConstructorOptions {
+export interface IDataProcessingServiceConstructorOptions {
 	/**
 	 * The type of the entity storage connector to use for extraction rule groups.
 	 * @default extraction-rule-group

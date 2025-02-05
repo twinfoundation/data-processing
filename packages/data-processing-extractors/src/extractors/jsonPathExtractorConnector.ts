@@ -15,7 +15,7 @@ export class JsonPathExtractorConnector implements IDataExtractorConnector {
 	public readonly CLASS_NAME: string = nameof<JsonPathExtractorConnector>();
 
 	/**
-	 * Extracts data from the from the provided input.
+	 * Extracts data from the provided input.
 	 * @param data The object to extract from.
 	 * @param rules The rules to use to extract the data.
 	 * @returns The extracted data.

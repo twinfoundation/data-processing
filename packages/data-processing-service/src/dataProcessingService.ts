@@ -4,7 +4,7 @@ import { GeneralError, Guards, Is, NotFoundError, ObjectHelper } from "@twin.org
 import {
 	DataConverterConnectorFactory,
 	DataExtractorConnectorFactory,
-	type IDataExtractionComponent,
+	type IDataProcessingComponent,
 	type IDataExtractorConnector,
 	type IRule,
 	type IRuleGroup
@@ -16,21 +16,21 @@ import {
 import { nameof } from "@twin.org/nameof";
 import { MimeTypeHelper } from "@twin.org/web";
 import type { ExtractionRuleGroup } from "./entities/extractionRuleGroup";
-import type { IDataExtractionServiceConstructorOptions } from "./models/IDataExtractionServiceConstructorOptions";
+import type { IDataProcessingServiceConstructorOptions } from "./models/IDataProcessingServiceConstructorOptions";
 
 /**
- * Class for extracting data from a source.
+ * Class for processing data from a source.
  */
-export class DataExtractionService implements IDataExtractionComponent {
+export class DataProcessingService implements IDataProcessingComponent {
 	/**
-	 * The namespace supported by the data extraction service.
+	 * The namespace supported by the data processing service.
 	 */
-	public static readonly NAMESPACE: string = "data-extraction";
+	public static readonly NAMESPACE: string = "data-processing";
 
 	/**
 	 * Runtime name for the class.
 	 */
-	public readonly CLASS_NAME: string = nameof<DataExtractionService>();
+	public readonly CLASS_NAME: string = nameof<DataProcessingService>();
 
 	/**
 	 * The entity storage for the extraction rule groups.
@@ -48,7 +48,7 @@ export class DataExtractionService implements IDataExtractionComponent {
 	 * Create a new instance of DataExtractionService.
 	 * @param options The options for the connector.
 	 */
-	constructor(options?: IDataExtractionServiceConstructorOptions) {
+	constructor(options?: IDataProcessingServiceConstructorOptions) {
 		this._extractionRuleGroupStorage = EntityStorageConnectorFactory.get(
 			options?.extractionRuleGroupStorageConnectorType ?? "extraction-rule-group"
 		);
@@ -66,11 +66,11 @@ export class DataExtractionService implements IDataExtractionComponent {
 	}
 
 	/**
-	 * Store an extraction rule group.
+	 * Set an extraction rule group.
 	 * @param ruleGroup The rule group to store.
 	 * @returns Nothing.
 	 */
-	public async ruleGroupStore(ruleGroup: IRuleGroup): Promise<void> {
+	public async ruleGroupSet(ruleGroup: IRuleGroup): Promise<void> {
 		Guards.object<IRuleGroup>(this.CLASS_NAME, nameof(ruleGroup), ruleGroup);
 		Guards.stringValue(this.CLASS_NAME, nameof(ruleGroup.id), ruleGroup.id);
 		Guards.stringValue(this.CLASS_NAME, nameof(ruleGroup.label), ruleGroup.label);
@@ -96,11 +96,11 @@ export class DataExtractionService implements IDataExtractionComponent {
 	}
 
 	/**
-	 * Retrieve a rule group for extraction.
-	 * @param ruleGroupId The id of the rule group to retrieve.
+	 * Get a rule group for extraction.
+	 * @param ruleGroupId The id of the rule group to get.
 	 * @returns The rule group.
 	 */
-	public async ruleGroupRetrieve(ruleGroupId: string): Promise<IRuleGroup> {
+	public async ruleGroupGet(ruleGroupId: string): Promise<IRuleGroup> {
 		Guards.stringValue(this.CLASS_NAME, nameof(ruleGroupId), ruleGroupId);
 
 		const extractRuleGroup = await this._extractionRuleGroupStorage.get(ruleGroupId);
@@ -149,7 +149,7 @@ export class DataExtractionService implements IDataExtractionComponent {
 		ruleGroupId: string,
 		data: Uint8Array,
 		overrideExtractorType?: string
-	): Promise<Uint8Array> {
+	): Promise<unknown> {
 		Guards.stringValue(this.CLASS_NAME, nameof(ruleGroupId), ruleGroupId);
 		Guards.uint8Array(this.CLASS_NAME, nameof(data), data);
 
@@ -159,9 +159,28 @@ export class DataExtractionService implements IDataExtractionComponent {
 			throw new NotFoundError(this.CLASS_NAME, "ruleGroupNotFound", ruleGroupId);
 		}
 
-		const mimeType = await MimeTypeHelper.detect(data);
+		const converted = await this.convert(data);
+
+		const extractor = Is.empty(overrideExtractorType)
+			? this._extractorConnector
+			: DataExtractorConnectorFactory.get(overrideExtractorType);
+
+		const extracted = await extractor.extract(converted, extractRuleGroup.rules);
+		return ObjectHelper.toExtended(extracted);
+	}
+
+	/**
+	 * Converts data from the provided input to a structured JSON document.
+	 * @param data The data to convert.
+	 * @param overrideMimeType An optional override for the mime type, will auto detect if empty.
+	 * @returns The converted data.
+	 */
+	public async convert(data: Uint8Array, overrideMimeType?: string): Promise<unknown> {
+		Guards.uint8Array(this.CLASS_NAME, nameof(data), data);
+
+		const mimeType = overrideMimeType ?? (await MimeTypeHelper.detect(data));
 		if (Is.empty(mimeType)) {
-			throw new NotFoundError(this.CLASS_NAME, "mimeTypeNotFound");
+			throw new GeneralError(this.CLASS_NAME, "mimeTypeNotFound");
 		}
 
 		const converters = DataConverterConnectorFactory.instancesList();
@@ -171,15 +190,6 @@ export class DataExtractionService implements IDataExtractionComponent {
 			throw new NotFoundError(this.CLASS_NAME, "converterNotFound", mimeType);
 		}
 
-		const converted = await converter.convert(data);
-
-		const extractor = Is.empty(overrideExtractorType)
-			? this._extractorConnector
-			: DataExtractorConnectorFactory.get(overrideExtractorType);
-
-		const extracted = await extractor.extract(converted, extractRuleGroup.rules);
-
-		// How do we return objects that might have dates or bigints in them
-		return ObjectHelper.toBytes(extracted);
+		return converter.convert(data);
 	}
 }

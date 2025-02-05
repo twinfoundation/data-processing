@@ -24,13 +24,17 @@ Class for extracting data from a JSON source.
 
 Runtime name for the class.
 
+#### Implementation of
+
+`IDataExtractorConnector.CLASS_NAME`
+
 ## Methods
 
 ### extract()
 
 > **extract**(`data`, `rules`): `Promise`\<`unknown`\>
 
-Extracts data from the from the provided input.
+Extracts data from the provided input.
 
 #### Parameters
 
