@@ -1,6 +1,6 @@
-# Class: JsonConverterConnector
+# Class: XmlConverterConnector
 
-Class for converting data to JSON from bytes.
+Class for converting data to XML from bytes.
 
 ## Implements
 
@@ -8,19 +8,19 @@ Class for converting data to JSON from bytes.
 
 ## Constructors
 
-### new JsonConverterConnector()
+### new XmlConverterConnector()
 
-> **new JsonConverterConnector**(): [`JsonConverterConnector`](JsonConverterConnector.md)
+> **new XmlConverterConnector**(): [`XmlConverterConnector`](XmlConverterConnector.md)
 
 #### Returns
 
-[`JsonConverterConnector`](JsonConverterConnector.md)
+[`XmlConverterConnector`](XmlConverterConnector.md)
 
 ## Properties
 
 ### NAMESPACE
 
-> `readonly` `static` **NAMESPACE**: `string` = `"json"`
+> `readonly` `static` **NAMESPACE**: `string` = `"xml"`
 
 The namespace supported by the data converter connector.
 

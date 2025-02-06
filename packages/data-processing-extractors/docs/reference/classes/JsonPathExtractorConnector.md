@@ -18,6 +18,14 @@ Class for extracting data from a JSON source.
 
 ## Properties
 
+### NAMESPACE
+
+> `readonly` `static` **NAMESPACE**: `string` = `"json-path"`
+
+The namespace supported by the data extractor connector.
+
+***
+
 ### CLASS\_NAME
 
 > `readonly` **CLASS\_NAME**: `string`

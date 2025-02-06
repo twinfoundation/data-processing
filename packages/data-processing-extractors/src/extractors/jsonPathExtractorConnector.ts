@@ -10,6 +10,11 @@ import { type JSONValue, query } from "json-p3";
  */
 export class JsonPathExtractorConnector implements IDataExtractorConnector {
 	/**
+	 * The namespace supported by the data extractor connector.
+	 */
+	public static readonly NAMESPACE: string = "json-path";
+
+	/**
 	 * Runtime name for the class.
 	 */
 	public readonly CLASS_NAME: string = nameof<JsonPathExtractorConnector>();

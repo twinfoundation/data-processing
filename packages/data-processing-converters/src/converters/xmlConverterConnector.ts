@@ -11,6 +11,11 @@ import xml2js from "xml2js";
  */
 export class XmlConverterConnector implements IDataConverterConnector {
 	/**
+	 * The namespace supported by the data converter connector.
+	 */
+	public static readonly NAMESPACE: string = "xml";
+
+	/**
 	 * Runtime name for the class.
 	 */
 	public readonly CLASS_NAME: string = nameof<XmlConverterConnector>();

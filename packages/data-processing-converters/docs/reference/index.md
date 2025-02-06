@@ -3,3 +3,4 @@
 ## Classes
 
 - [JsonConverterConnector](classes/JsonConverterConnector.md)
+- [XmlConverterConnector](classes/XmlConverterConnector.md)

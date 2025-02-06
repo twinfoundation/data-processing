@@ -10,6 +10,11 @@ import { MimeTypes } from "@twin.org/web";
  */
 export class JsonConverterConnector implements IDataConverterConnector {
 	/**
+	 * The namespace supported by the data converter connector.
+	 */
+	public static readonly NAMESPACE: string = "json";
+
+	/**
 	 * Runtime name for the class.
 	 */
 	public readonly CLASS_NAME: string = nameof<JsonConverterConnector>();
