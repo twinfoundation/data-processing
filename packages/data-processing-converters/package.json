@@ -31,7 +31,7 @@
 	},
 	"dependencies": {
 		"@twin.org/core": "next",
-		"@twin.org/data-processing-models": "0.0.1-next.3",
+		"@twin.org/data-processing-models": "0.0.1-next.4",
 		"@twin.org/nameof": "next",
 		"@twin.org/web": "next",
 		"xml2js": "^0.6.2"
